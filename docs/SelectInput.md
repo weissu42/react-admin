@@ -35,6 +35,7 @@ import { SelectInput } from 'react-admin';
 | `options`         | Optional | `Object`                   | -                  | Props to pass to the underlying `<SelectInput>` element                                                                                |
 | `optionText`      | Optional | `string` &#124; `Function` | `name`             | Field name of record to display in the suggestion item or function which accepts the current record as argument (`record => {string}`) |
 | `optionValue`     | Optional | `string`                   | `id`               | Field name of record containing the value to use as input value                                                                        |
+| `showEmptyOption` | Optional | `boolean`                  | `true`             | Whether the empty option should be rendered                                                                                            |
 | `resettable`      | Optional | `boolean`                  | `false`            | If `true`, display a button to reset the changes in this input value                                                                   |
 | `translateChoice` | Optional | `boolean`                  | `true`             | Whether the choices should be translated                                                                                               |
 

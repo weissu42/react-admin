@@ -133,6 +133,21 @@ describe('<SelectInput />', () => {
         expect(screen.getByText('Empty choice')).not.toBeNull();
     });
 
+    it('should allow to disable the empty option completely', () => {
+        render(
+            <AdminContext dataProvider={testDataProvider()}>
+                <SimpleForm onSubmit={jest.fn()}>
+                    <SelectInput showEmptyOption={false} {...defaultProps} />
+                </SimpleForm>
+            </AdminContext>
+        );
+        fireEvent.mouseDown(
+            screen.getByLabelText('resources.posts.fields.language')
+        );
+
+        expect(screen.queryByTitle('ra.action.clear_input_value')).toBeNull();
+    });
+
     it('should use optionValue as value identifier', () => {
         render(
             <AdminContext dataProvider={testDataProvider()}>

@@ -131,6 +131,7 @@ export const SelectInput = (props: SelectInputProps) => {
         optionValue,
         parse,
         resource: resourceProp,
+        showEmptyOption,
         source: sourceProp,
         translateChoice,
         validate,
@@ -278,14 +279,16 @@ export const SelectInput = (props: SelectInputProps) => {
                 margin={margin}
                 {...sanitizeRestProps(rest)}
             >
-                <MenuItem
-                    value={emptyValue}
-                    key="null"
-                    aria-label={translate('ra.action.clear_input_value')}
-                    title={translate('ra.action.clear_input_value')}
-                >
-                    {renderEmptyItemOption()}
-                </MenuItem>
+                {showEmptyOption && (
+                    <MenuItem
+                        value={emptyValue}
+                        key="null"
+                        aria-label={translate('ra.action.clear_input_value')}
+                        title={translate('ra.action.clear_input_value')}
+                    >
+                        {renderEmptyItemOption()}
+                    </MenuItem>
+                )}
                 {finalChoices.map(renderMenuItem)}
             </StyledResettableTextField>
             {createElement}
@@ -316,6 +319,7 @@ SelectInput.propTypes = {
 SelectInput.defaultProps = {
     emptyText: '',
     emptyValue: '',
+    showEmptyOption: true,
     options: {},
     optionText: 'name',
     optionValue: 'id',
@@ -377,6 +381,7 @@ export type SelectInputProps = Omit<CommonInputProps, 'source'> &
         disableValue?: string;
         emptyText?: string | ReactElement;
         emptyValue?: any;
+        showEmptyOption?: boolean;
         // Source is optional as AutocompleteInput can be used inside a ReferenceInput that already defines the source
         source?: string;
         onChange?: (event: ChangeEvent<HTMLInputElement> | RaRecord) => void;
